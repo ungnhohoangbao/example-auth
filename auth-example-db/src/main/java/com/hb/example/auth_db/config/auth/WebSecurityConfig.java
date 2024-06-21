@@ -1,4 +1,4 @@
-package com.hb.example.auth.config.auth;
+package com.hb.example.auth_db.config.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

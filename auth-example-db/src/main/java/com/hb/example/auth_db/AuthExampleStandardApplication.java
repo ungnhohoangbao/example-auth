@@ -1,4 +1,4 @@
-package com.hb.example.auth;
+package com.hb.example.auth_db;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
