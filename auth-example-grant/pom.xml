@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hb.example</groupId>
-	<artifactId>auth-example-db</artifactId>
+	<artifactId>auth-example-grant</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>auth-example-db</name>
+	<name>auth-example-grant</name>
 	<description>Example auth for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -85,7 +85,7 @@
 					<image>
 						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
 					</image>
-					<finalName>auth-example-db</finalName>
+					<finalName>auth-example-grant</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

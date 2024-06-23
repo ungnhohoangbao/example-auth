@@ -1,38 +1,44 @@
-package com.hb.example.auth_db.config.auth;
+package com.hb.example.auth_grant.config.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hb.example.auth_grant.service.security.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+
+import javax.sql.DataSource;
 
 
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final MyUserDetailsService userDetailsService;
+    private final RedisConnectionFactory redisConnectionFactory;
+    private final DataSource dataSource;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    public AuthorizationServerConfig(AuthenticationManager authenticationManager, MyUserDetailsService userDetailsService,
+                                     RedisConnectionFactory redisConnectionFactory, DataSource dataSource) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.redisConnectionFactory = redisConnectionFactory;
+        this.dataSource = dataSource;
+    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("WebClientd")
-                .secret(passwordEncoder().encode("W20e20b"))
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .scopes("read", "write");
-
+        clients.jdbc(dataSource)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
     @Override
@@ -55,7 +61,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Bean
     public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
+        return new RedisTokenStore(redisConnectionFactory);
     }
 
 

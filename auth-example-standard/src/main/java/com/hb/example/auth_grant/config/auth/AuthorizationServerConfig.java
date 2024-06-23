@@ -1,4 +1,4 @@
-package com.hb.example.auth_db.config.auth;
+package com.hb.example.auth_grant.config.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +28,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("WebClientd")
-                .secret(passwordEncoder().encode("W20e20b"))
+                .withClient("WebClientdExample")
+                .secret(passwordEncoder().encode("SecretExample"))
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .scopes("read", "write");
 

@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  # employee postgres db
+  postgres-example-auth:
+    container_name: postgres-auth
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    volumes:
+      - E:/Config/PostgreSQL/data/example_auth:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=exampleauth
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456
+    networks:
+      - example
+
+  redis-service:
+    container_name: redis-auth
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - example
+
+networks:
+  example:
+    driver: bridge

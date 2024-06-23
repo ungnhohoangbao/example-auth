@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.hb.example.auth_db-example-standard' is invalid and this project uses 'com.hb.example.auth_example_standard' instead.
+* The original package name 'com.hb.example.auth_grant-example-standard' is invalid and this project uses 'com.hb.example.auth_example_standard' instead.
 
 # Getting Started
 
