@@ -45,7 +45,14 @@ CREATE TABLE if not exists users (
 ALTER TABLE users ADD FOREIGN KEY (roleid) REFERENCES role(roleid);
 
 insert into "users" (userName, password, fullName, createddate, modifieddate, statusid, roleid)
-values ('user', 'FV+yBp4RnDI=', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 1);
+values ('user', '$2a$10$2LSXXFi3470QVGuRMEh0BOURUxRLERD/07VgoyY/ueuFCr2t6pWU6', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 1);
 
 insert into "users" (userName, password, fullName, createddate, modifieddate, statusid, roleid)
-values ('admin', 'FV+yBp4RnDI=', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 2);
+values ('admin', '$2a$10$2LSXXFi3470QVGuRMEh0BOURUxRLERD/07VgoyY/ueuFCr2t6pWU6', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 2);
+
+--
+update oauth_client_details set authorized_grant_types = 'refresh_token,password,custom_grant_type' where client_id = 'WebClientdExample';
+
+alter table users add column code VARCHAR(255);
+update users set code = 'abc123' where userid = 1;
+update users set code = 'efd123' where userid = 2;

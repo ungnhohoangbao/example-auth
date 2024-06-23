@@ -30,7 +30,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("WebClientdExample")
                 .secret(passwordEncoder().encode("SecretExample"))
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+                .authorizedGrantTypes("password", "refresh_token")
                 .scopes("read", "write");
 
     }

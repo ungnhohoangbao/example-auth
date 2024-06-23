@@ -9,7 +9,7 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - E:/Config/PostgreSQL/data/example_auth:/var/lib/postgresql/data
+      - D:\MMO\Project\DB\data\example_auth:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=exampleauth
       - POSTGRES_USER=user

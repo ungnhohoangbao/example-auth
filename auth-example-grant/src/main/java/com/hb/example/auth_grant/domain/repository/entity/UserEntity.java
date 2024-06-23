@@ -38,4 +38,7 @@ public class UserEntity implements Serializable {
 
     @Column(name = "modifieddate")
     private Timestamp modifieddate;
+
+    @Column(name = "code")
+    private String code;
 }

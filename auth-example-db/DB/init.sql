@@ -45,7 +45,7 @@ CREATE TABLE if not exists users (
 ALTER TABLE users ADD FOREIGN KEY (roleid) REFERENCES role(roleid);
 
 insert into "users" (userName, password, fullName, createddate, modifieddate, statusid, roleid)
-values ('user', 'FV+yBp4RnDI=', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 1);
+values ('user', '$2a$10$2LSXXFi3470QVGuRMEh0BOURUxRLERD/07VgoyY/ueuFCr2t6pWU6', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 1);
 
 insert into "users" (userName, password, fullName, createddate, modifieddate, statusid, roleid)
-values ('admin', 'FV+yBp4RnDI=', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 2);
+values ('admin', '$2a$10$2LSXXFi3470QVGuRMEh0BOURUxRLERD/07VgoyY/ueuFCr2t6pWU6', 'account user', CURRENT_DATE, CURRENT_DATE, 1, 2);
