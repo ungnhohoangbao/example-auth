@@ -1,16 +1,16 @@
 DROP TABLE IF EXISTS oauth_client_details CASCADE ;
 create table oauth_client_details (
-                                      client_id VARCHAR(256) PRIMARY KEY,
-                                      resource_ids VARCHAR(256),
-                                      client_secret VARCHAR(256),
-                                      scope VARCHAR(256),
-                                      authorized_grant_types VARCHAR(256),
-                                      web_server_redirect_uri VARCHAR(256),
-                                      authorities VARCHAR(256),
-                                      access_token_validity INTEGER,
-                                      refresh_token_validity INTEGER,
-                                      additional_information VARCHAR(4096),
-                                      autoapprove VARCHAR(256)
+      client_id VARCHAR(256) PRIMARY KEY,
+      resource_ids VARCHAR(256),
+      client_secret VARCHAR(256),
+      scope VARCHAR(256),
+      authorized_grant_types VARCHAR(256),
+      web_server_redirect_uri VARCHAR(256),
+      authorities VARCHAR(256),
+      access_token_validity INTEGER,
+      refresh_token_validity INTEGER,
+      additional_information VARCHAR(4096),
+      autoapprove VARCHAR(256)
 );
 
 INSERT INTO oauth_client_details(client_id, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
@@ -18,11 +18,11 @@ VALUES ('WebClientdExample', '$2a$10$73gCqeFxykiNGXG4R.6Qee1FgWmuoRZXWaRipoahA37
 
 -- Table Role
 CREATE TABLE if not exists role (
-                                    roleid BIGSERIAL NOT NULL PRIMARY KEY,
-                                    role TEXT,
-                                    description TEXT,
-                                    createdDate TIMESTAMP NOT NULL,
-                                    modifieddate TIMESTAMP NOT NULL
+    roleid BIGSERIAL NOT NULL PRIMARY KEY,
+    role TEXT,
+    description TEXT,
+    createdDate TIMESTAMP NOT NULL,
+    modifieddate TIMESTAMP NOT NULL
 );
 
 insert into "role" (roleid, role, description, createddate, modifieddate)
@@ -30,11 +30,10 @@ values (1, 'ADMIN', 'Admin', CURRENT_DATE, CURRENT_DATE);
 insert into "role" (roleid, role, description, createddate, modifieddate)
 values (2, 'USER', 'USER', CURRENT_DATE, CURRENT_DATE);
 
-
 -- Table Users
 CREATE TABLE if not exists users (
-                                     userid bigserial NOT NULL PRIMARY KEY,
-                                     userName VARCHAR(100) NOT NULL UNIQUE,
+    userid bigserial NOT NULL PRIMARY KEY,
+    userName VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     fullName VARCHAR(255) NOT NULL,
     createdDate TIMESTAMP NOT NULL,

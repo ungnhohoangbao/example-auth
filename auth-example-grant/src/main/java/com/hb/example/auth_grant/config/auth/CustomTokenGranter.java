@@ -30,11 +30,9 @@ public class CustomTokenGranter extends AbstractTokenGranter {
         }
 
         UserDetails userDetails = customGrantService.loadUserCode(code);
-
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authentication.setDetails(userDetails);
-
         OAuth2Request storedOAuth2Request = getRequestFactory().createOAuth2Request(client, tokenRequest);
 
         return new OAuth2Authentication(storedOAuth2Request, authentication);
